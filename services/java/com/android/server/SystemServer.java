@@ -125,6 +125,7 @@ import com.android.server.adb.AdbService;
 import com.android.server.alarm.AlarmManagerService;
 import com.android.server.am.ActivityManagerService;
 import com.android.server.ambientcontext.AmbientContextManagerService;
+import com.android.server.app.AppLockManagerService;
 import com.android.server.app.GameManagerService;
 import com.android.server.appbinding.AppBindingService;
 import com.android.server.appfunctions.AppFunctionManagerService;
@@ -2708,6 +2709,10 @@ public final class SystemServer implements Dumpable {
                 mSystemServiceManager.startService(AuthenticationPolicyService.class);
                 t.traceEnd();
             }
+
+            t.traceBegin("AppLockManagerService");
+            mSystemServiceManager.startService(AppLockManagerService.Lifecycle.class);
+            t.traceEnd();
 
             if (!isWatch) {
                 // We don't run this on watches as there are no plans to use the data logged
